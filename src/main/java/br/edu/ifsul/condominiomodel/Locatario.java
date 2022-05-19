@@ -10,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -20,8 +22,8 @@ import org.hibernate.validator.constraints.Length;
 @Table(name="locatario")
 public class Locatario extends Pessoa implements Serializable {
     
-    @NotBlank(message = "A renda precisa ser preenchida")
-    @Column(name="renda", nullable = false)
+    @NotNull(message = "A renda deve ser informado")
+    @Column(name = "renda", nullable = false, columnDefinition = "numeric(8,2)")
     private Double renda;
     
     @NotBlank(message = "O local do Trabalho precisa ser preenchido")
