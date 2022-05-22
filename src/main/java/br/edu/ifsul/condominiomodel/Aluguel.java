@@ -39,7 +39,7 @@ public class Aluguel implements Serializable{
     @GeneratedValue(generator = "seq_aluguel", strategy = GenerationType.SEQUENCE)
     private Integer id;
     
-    @NotBlank(message = "O valor precisa ser preenchido")
+    @NotNull(message = "O valor deve ser informado")
     @Column(name="valor", nullable = false)
     private Double valor;
     
@@ -53,7 +53,7 @@ public class Aluguel implements Serializable{
     @Column(name = "fimContrato", nullable = false)
     private Calendar fimContrato;
     
-    @NotBlank(message = "O dia de vencimento precisa ser preenchido")
+    @NotNull(message = "o dia de vencimento deve ser informado")
     @Column(name="diaVencimento", nullable = false)
     private Integer diaVencimento;
     
@@ -65,7 +65,7 @@ public class Aluguel implements Serializable{
     @JoinColumn(name="locatario", referencedColumnName = "id", nullable = false)
     private Locatario locatario;
     
-    @NotNull(message = "A Unidade Condominal deve ser informado")
+    //@NotNull(message = "A Unidade Condominal deve ser informado")
     @ManyToOne
     @JoinColumn(name="unidadeCondominal", referencedColumnName = "id", nullable = false)
     private UnidadeCondominal unidadeCondominal;
@@ -126,6 +126,7 @@ public class Aluguel implements Serializable{
         this.mensalidades = mensalidades;
     }
     
+    
 
     @Override
     public int hashCode() {
@@ -147,6 +148,22 @@ public class Aluguel implements Serializable{
         }
         final Aluguel other = (Aluguel) obj;
         return Objects.equals(this.id, other.id);
+    }
+
+    public Locatario getLocatario() {
+        return locatario;
+    }
+
+    public void setLocatario(Locatario locatario) {
+        this.locatario = locatario;
+    }
+
+    public UnidadeCondominal getUnidadeCondominal() {
+        return unidadeCondominal;
+    }
+
+    public void setUnidadeCondominal(UnidadeCondominal unidadeCondominal) {
+        this.unidadeCondominal = unidadeCondominal;
     }
     
     
