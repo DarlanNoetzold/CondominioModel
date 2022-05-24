@@ -44,7 +44,7 @@ public class UnidadeCondominal implements Serializable{
     @Column(name="area", nullable = false)
     private Double area;
     
-    @NotBlank(message = "O numero do Quarto precisa ser preenchido")
+    @NotNull(message = "O numero do quarto deve ser informado")
     @Column(name="numeroQuarto", nullable = false)
     private Integer numeroQuarto;
 

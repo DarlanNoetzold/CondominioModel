@@ -65,7 +65,7 @@ public class Aluguel implements Serializable{
     @JoinColumn(name="locatario", referencedColumnName = "id", nullable = false)
     private Locatario locatario;
     
-    //@NotNull(message = "A Unidade Condominal deve ser informado")
+    @NotNull(message = "A Unidade Condominal deve ser informado")
     @ManyToOne
     @JoinColumn(name="unidadeCondominal", referencedColumnName = "id", nullable = false)
     private UnidadeCondominal unidadeCondominal;
