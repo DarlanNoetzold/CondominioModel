@@ -126,6 +126,23 @@ public class Aluguel implements Serializable{
         this.mensalidades = mensalidades;
     }
     
+    public Locatario getLocatario() {
+        return locatario;
+    }
+
+    public void setLocatario(Locatario locatario) {
+        this.locatario = locatario;
+    }
+
+    public UnidadeCondominal getUnidadeCondominal() {
+        return unidadeCondominal;
+    }
+
+    public void setUnidadeCondominal(UnidadeCondominal unidadeCondominal) {
+        this.unidadeCondominal = unidadeCondominal;
+    }
+    
+    
     
 
     @Override
@@ -150,22 +167,4 @@ public class Aluguel implements Serializable{
         return Objects.equals(this.id, other.id);
     }
 
-    public Locatario getLocatario() {
-        return locatario;
-    }
-
-    public void setLocatario(Locatario locatario) {
-        this.locatario = locatario;
-    }
-
-    public UnidadeCondominal getUnidadeCondominal() {
-        return unidadeCondominal;
-    }
-
-    public void setUnidadeCondominal(UnidadeCondominal unidadeCondominal) {
-        this.unidadeCondominal = unidadeCondominal;
-    }
-    
-    
-    
 }

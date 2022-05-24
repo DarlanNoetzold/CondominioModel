@@ -40,7 +40,7 @@ public class UnidadeCondominal implements Serializable{
     @Column(name="descricao",columnDefinition = "TEXT")
     private String descricao;
     
-    @NotBlank(message = "A area precisa ser preenchida")
+    @NotNull(message = "A area deve ser informado")
     @Column(name="area", nullable = false)
     private Double area;
     
