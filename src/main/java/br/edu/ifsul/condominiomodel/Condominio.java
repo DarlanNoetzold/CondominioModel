@@ -65,7 +65,7 @@ public class Condominio implements Serializable{
             )
     private List<Recurso> recursos = new ArrayList<>();
     
-    @OneToMany(mappedBy = "unidadeCondominal", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "condominio", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<UnidadeCondominal> unidadeCondominal = new ArrayList<>();
 
     public Condominio() {

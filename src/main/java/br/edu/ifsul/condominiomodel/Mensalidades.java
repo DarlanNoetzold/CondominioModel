@@ -33,7 +33,7 @@ public class Mensalidades implements Serializable{
     @GeneratedValue(generator = "seq_aluguel", strategy = GenerationType.SEQUENCE)
     private Integer id;
     
-    @NotBlank(message = "O valor precisa ser preenchido")
+    @NotNull(message = "O valor deve ser informado")
     @Column(name="valor", nullable = false)
     private Double valor;
     
@@ -42,7 +42,7 @@ public class Mensalidades implements Serializable{
     @Column(name = "vencimento", nullable = false)
     private Calendar vencimento;
     
-    @NotBlank(message = "O valor de Pagamento precisa ser preenchido")
+    @NotNull(message = "O valor de pagamento deve ser informado")
     @Column(name="valorPagamento", nullable = false)
     private Double valorPagamento;
     
