@@ -50,6 +50,15 @@ public class Recurso implements Serializable{
 
     public Recurso() {
     }
+    
+    public void adicionarCondominio(Condominio obj){
+        obj.getRecursos().add(this);
+        this.condominios.add(obj);
+    }
+    
+    public void removerCondominio(int index){
+        this.condominios.remove(index);
+    }
 
     public Integer getId() {
         return id;

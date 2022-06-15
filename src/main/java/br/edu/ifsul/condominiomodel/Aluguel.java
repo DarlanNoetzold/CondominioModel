@@ -70,10 +70,15 @@ public class Aluguel implements Serializable{
     @JoinColumn(name="unidadeCondominal", referencedColumnName = "id", nullable = false)
     private UnidadeCondominal unidadeCondominal;
 
-    public void addMensalidade(Mensalidades mensalidades){
+    public void adicionarMensalidade(Mensalidades mensalidades){
         mensalidades.setAluguel(this);
         this.getMensalidades().add(mensalidades);
     }
+    
+    public void removerMensalidade(int index){
+        this.mensalidades.remove(index);
+    }
+  
     
     public Aluguel() {
     }

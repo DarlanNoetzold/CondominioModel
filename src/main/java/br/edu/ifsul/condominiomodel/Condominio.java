@@ -71,6 +71,15 @@ public class Condominio implements Serializable{
     public Condominio() {
     }
 
+    public void adicionarRecurso(Recurso obj){
+        obj.getCondominios().add(this);
+        this.recursos.add(obj);
+    }
+    
+    public void removerRecurso(int index){
+        this.recursos.remove(index);
+    }
+    
     public Integer getId() {
         return id;
     }
