@@ -63,7 +63,7 @@ public class Condominio implements Serializable{
             inverseJoinColumns = 
                     @JoinColumn(name= "recurso", referencedColumnName = "id", nullable = false)
             )
-    private List<Recurso> recursos = new ArrayList<>();
+    private List<UnidadeCondominal> recursos = new ArrayList<>();
     
     @OneToMany(mappedBy = "condominio", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<UnidadeCondominal> unidadeCondominal = new ArrayList<>();
@@ -71,13 +71,13 @@ public class Condominio implements Serializable{
     public Condominio() {
     }
 
-    public void adicionarRecurso(Recurso obj){
-        obj.getCondominios().add(this);
-        this.recursos.add(obj);
+    public void adicionarUnidadeCondominal(UnidadeCondominal obj){
+        obj.setCondominio(this);
+        this.unidadeCondominal.add(obj);
     }
     
-    public void removerRecurso(int index){
-        this.recursos.remove(index);
+    public void removerUnidadeCondominal(int index){
+        this.unidadeCondominal.remove(index);
     }
     
     public Integer getId() {
@@ -120,16 +120,23 @@ public class Condominio implements Serializable{
         this.cep = cep;
     }
 
-    public List<Recurso> getRecursos() {
+    public List<UnidadeCondominal> getRecursos() {
         return recursos;
     }
 
-    public void setRecursos(List<Recurso> recursos) {
+    public void setRecursos(List<UnidadeCondominal> recursos) {
         this.recursos = recursos;
     }
-    
-    
 
+    public List<UnidadeCondominal> getUnidadeCondominal() {
+        return unidadeCondominal;
+    }
+
+    public void setUnidadeCondominal(List<UnidadeCondominal> unidadeCondominal) {
+        this.unidadeCondominal = unidadeCondominal;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 3;
