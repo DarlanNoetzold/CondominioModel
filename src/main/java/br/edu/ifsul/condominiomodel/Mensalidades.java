@@ -50,7 +50,7 @@ public class Mensalidades implements Serializable{
     @Column(name = "dataPagamento", nullable = true)
     private Calendar dataPagamento;
 
-    @NotNull(message = "A ordem de servico deve ser informado")
+    @NotNull(message = "O Aluguel deve ser informado")
     @ManyToOne
     @JoinColumn(name="aluguel", referencedColumnName = "id", nullable = false)
     private Aluguel aluguel;
