@@ -5,14 +5,20 @@
 package br.edu.ifsul.condominiomodel;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -47,11 +53,25 @@ public class Pessoa implements Serializable{
     @Column(name="telefone", nullable = false, length = 13)
     private String telefone;
     
+    @NotBlank(message = "A senha deve ser informada")
+    @Length(max = 20, message = "A senha não pode ter mais que {max} caracteres")    
+    @Column(name = "senha", length = 20, nullable = false)    
+    private String senha;
+    
     @NotBlank(message = "O email precisa ser preenchido")
     @Length(max=40, message = "O email não pode ter mais que {max} caracteres")
     @Column(name="email", nullable = false, length = 40)
     @Email
     private String email;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "permissoes", 
+            joinColumns = 
+                    @JoinColumn(name = "cpf", referencedColumnName = "cpf", 
+                            nullable = false), 
+            inverseJoinColumns = 
+                    @JoinColumn(name = "permissao", referencedColumnName = "nome", nullable = false))
+    private Set<Permissao> permissoes = new HashSet<>();
 
     public Pessoa() {
     }
@@ -95,6 +115,24 @@ public class Pessoa implements Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Set<Permissao> getPermissoes() {
+        return permissoes;
+    }
+
+    public void setPermissoes(Set<Permissao> permissoes) {
+        this.permissoes = permissoes;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    
 
     @Override
     public int hashCode() {
