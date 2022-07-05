@@ -34,19 +34,15 @@ import org.hibernate.validator.constraints.Length;
 @Table(name="pessoa")
 public class Pessoa implements Serializable{
     @Id
-    @SequenceGenerator(name = "seq_pessoa", sequenceName = "seq_pessoa_id", allocationSize = 1)
-    @GeneratedValue(generator = "seq_pessoa", strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    @NotBlank(message = "O cpf precisa ser preenchido")
+    @Length(max=11, message = "O cpf não pode ter mais que {max} caracteres")
+    @Column(name="cpf", nullable = false, length = 11)
+    private String cpf;
     
     @NotBlank(message = "O nome precisa ser preenchido")
     @Length(max=40, message = "O nome não pode ter mais que {max} caracteres")
     @Column(name="nome", nullable = false, length = 40)
     private String nome;
-    
-    @NotBlank(message = "O cpf precisa ser preenchido")
-    @Length(max=11, message = "O cpf não pode ter mais que {max} caracteres")
-    @Column(name="cpf", nullable = false, length = 11)
-    private String cpf;
     
     @NotBlank(message = "O telefone precisa ser preenchido")
     @Length(max=13, message = "O telefone não pode ter mais que {max} caracteres")
@@ -64,7 +60,7 @@ public class Pessoa implements Serializable{
     @Email
     private String email;
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "permissoes", 
             joinColumns = 
                     @JoinColumn(name = "cpf", referencedColumnName = "cpf", 
@@ -74,14 +70,6 @@ public class Pessoa implements Serializable{
     private Set<Permissao> permissoes = new HashSet<>();
 
     public Pessoa() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -132,12 +120,10 @@ public class Pessoa implements Serializable{
         this.senha = senha;
     }
     
-    
-
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.cpf);
         return hash;
     }
 
@@ -153,7 +139,7 @@ public class Pessoa implements Serializable{
             return false;
         }
         final Pessoa other = (Pessoa) obj;
-        return Objects.equals(this.id, other.id);
+        return Objects.equals(this.cpf, other.cpf);
     }
    
     

@@ -29,7 +29,6 @@ public class FabricaObjetos {
         l.setTelefone("9999999");
         l.setTelefoneTrabalho("999999");
         l.setRenda(2131.50);
-        l.setId(1);
         a.setLocatario(l);
         UnidadeCondominal u = new UnidadeCondominal();
         u.setArea(345.6);
